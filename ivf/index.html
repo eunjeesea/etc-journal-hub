@@ -40,6 +40,26 @@ h2{font-size:17px;margin:32px 0 12px;padding-bottom:6px;border-bottom:1px solid 
   text-align:center;color:#8a939c;font-size:14px}
 footer{margin-top:40px;padding-top:16px;border-top:1px solid #dfe3e8;
   font-size:12px;color:#8a939c}
+
+/* Quiz. The digest ships the questions as plain markup; the script below makes them
+   interactive. In the email (no JS) the questions and explanations simply read as text. */
+.quiz{margin:16px 0 4px;padding:14px 16px;background:#f7f9fb;
+  border:1px solid #dde4ea;border-left:3px solid #0b5394;border-radius:6px}
+.quiz::before{content:"이해도 확인 퀴즈";display:block;font-size:11px;font-weight:700;
+  letter-spacing:.03em;color:#0b5394;margin-bottom:10px}
+.quiz-q{margin-bottom:14px}
+.quiz-q:last-child{margin-bottom:0}
+.quiz-question{margin:0 0 8px;font-weight:700;font-size:13.5px}
+.quiz-opt{display:block;width:100%;text-align:left;margin:0 0 6px;padding:8px 12px;
+  font:inherit;font-size:13px;color:#1c2024;background:#fff;border:1px solid #d8dee4;
+  border-radius:5px;cursor:pointer}
+.quiz-opt:hover:not(:disabled){border-color:#0b5394;background:#f2f7fc}
+.quiz-opt:disabled{cursor:default}
+.quiz-opt.correct{border-color:#1a7f4b;background:#e8f6ee;color:#12603a;font-weight:700}
+.quiz-opt.wrong{border-color:#c0392b;background:#fdeceb;color:#8c2a1f}
+.quiz-explain{display:none;margin:8px 0 0;padding:9px 12px;font-size:12.5px;
+  background:#fff;border:1px dashed #b8c4cf;border-radius:5px;color:#41505e}
+.quiz-explain.show{display:block}
 @media(max-width:600px){.wrap{padding:0 14px 44px}h1{font-size:20px}.digest{padding:4px 14px 16px}}
 </style>
 </head>
@@ -63,5 +83,6 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid #dfe3e8;
   내부용 자료입니다. 외부 공유를 금합니다.
 </footer>
 </div>
+
 </body>
 </html>

@@ -40,6 +40,26 @@ h2{font-size:17px;margin:32px 0 12px;padding-bottom:6px;border-bottom:1px solid 
   text-align:center;color:#8a939c;font-size:14px}
 footer{margin-top:40px;padding-top:16px;border-top:1px solid #dfe3e8;
   font-size:12px;color:#8a939c}
+
+/* Quiz. The digest ships the questions as plain markup; the script below makes them
+   interactive. In the email (no JS) the questions and explanations simply read as text. */
+.quiz{margin:16px 0 4px;padding:14px 16px;background:#f7f9fb;
+  border:1px solid #dde4ea;border-left:3px solid #0b5394;border-radius:6px}
+.quiz::before{content:"이해도 확인 퀴즈";display:block;font-size:11px;font-weight:700;
+  letter-spacing:.03em;color:#0b5394;margin-bottom:10px}
+.quiz-q{margin-bottom:14px}
+.quiz-q:last-child{margin-bottom:0}
+.quiz-question{margin:0 0 8px;font-weight:700;font-size:13.5px}
+.quiz-opt{display:block;width:100%;text-align:left;margin:0 0 6px;padding:8px 12px;
+  font:inherit;font-size:13px;color:#1c2024;background:#fff;border:1px solid #d8dee4;
+  border-radius:5px;cursor:pointer}
+.quiz-opt:hover:not(:disabled){border-color:#0b5394;background:#f2f7fc}
+.quiz-opt:disabled{cursor:default}
+.quiz-opt.correct{border-color:#1a7f4b;background:#e8f6ee;color:#12603a;font-weight:700}
+.quiz-opt.wrong{border-color:#c0392b;background:#fdeceb;color:#8c2a1f}
+.quiz-explain{display:none;margin:8px 0 0;padding:9px 12px;font-size:12.5px;
+  background:#fff;border:1px dashed #b8c4cf;border-radius:5px;color:#41505e}
+.quiz-explain.show{display:block}
 @media(max-width:600px){.wrap{padding:0 14px 44px}h1{font-size:20px}.digest{padding:4px 14px 16px}}
 </style>
 </head>
@@ -76,7 +96,26 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid #dfe3e8;
       <a href="https://pubmed.ncbi.nlm.nih.gov/42431248/" style="color:#0b5c8a;text-decoration:none">
         Endogenous progesterone guided timing of natural cycle frozen embryo transfer and reproductive outcomes in a large multicenter cohort in the United States.
       </a>
+    
+  <div class="quiz" data-pmid="42431248">
+    <div class="quiz-q">
+      <p class="quiz-question">Q1. 이 연구에 포함된 FET 주기는 총 몇 건인가?</p>
+      <button class="quiz-opt" data-correct="false">1,204주기</button>
+      <button class="quiz-opt" data-correct="true">26,668주기</button>
+      <button class="quiz-opt" data-correct="false">5,310주기</button>
+      <button class="quiz-opt" data-correct="false">74주기</button>
+      <p class="quiz-explain">총 26,668건의 FET 주기가 분석에 포함되었습니다. 이 중 P4 기반 NC-FET는 74건입니다. (초록 RESULTS)</p>
     </div>
+    <div class="quiz-q">
+      <p class="quiz-question">Q2. P4 기반 NC-FET군과 programmed FET군의 생아출생률 비교 결과는?</p>
+      <button class="quiz-opt" data-correct="false">P4군이 유의하게 높았다</button>
+      <button class="quiz-opt" data-correct="false">programmed군이 유의하게 높았다</button>
+      <button class="quiz-opt" data-correct="true">보정 후 유의한 차이가 없었다 (RR 1.12, 95% CI 0.88–1.43)</button>
+      <button class="quiz-opt" data-correct="false">두 군 모두 30% 미만이었다</button>
+      <p class="quiz-explain">생아출생률은 P4군 50%, programmed군 47%였으나 보정 후 통계적으로 유의한 차이는 없었습니다 (RR 1.12, 95% CI 0.88–1.43). (초록 RESULTS)</p>
+    </div>
+  </div>
+</div>
     <div style="font-size:12px;color:#666;margin-bottom:8px">
       Fertility and Sterility · 2026-07-10 · <strong>후향적 코호트</strong> (미국 다기관, 26,668주기)
     </div>
@@ -111,7 +150,26 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid #dfe3e8;
       <a href="https://pubmed.ncbi.nlm.nih.gov/42425545/" style="color:#0b5c8a;text-decoration:none">
         Progestogen-primed ovarian stimulation vs GnRH antagonists and/or agonists for women undergoing assisted reproduction: systematic review and meta-analysis.
       </a>
+    
+  <div class="quiz" data-pmid="42425545">
+    <div class="quiz-q">
+      <p class="quiz-question">Q1. 이 메타분석에 포함된 RCT와 대상자 수는?</p>
+      <button class="quiz-opt" data-correct="true">RCT 20편 · 4,430명</button>
+      <button class="quiz-opt" data-correct="false">RCT 8편 · 1,220명</button>
+      <button class="quiz-opt" data-correct="false">RCT 35편 · 9,140명</button>
+      <button class="quiz-opt" data-correct="false">RCT 12편 · 2,660명</button>
+      <p class="quiz-explain">RCT 20편, 총 4,430명이 포함되었습니다. 다만 저위험 비뚤림 연구는 한 편도 없었습니다. (초록 RESULTS)</p>
     </div>
+    <div class="quiz-q">
+      <p class="quiz-question">Q2. GnRH antagonist 대비 PPOS의 생아출생률과 그 근거 확실성은?</p>
+      <button class="quiz-opt" data-correct="true">유의하게 높음 (RR 1.13), 근거 확실성 '중등도'</button>
+      <button class="quiz-opt" data-correct="false">유의하게 높음 (RR 1.13), 근거 확실성 '높음'</button>
+      <button class="quiz-opt" data-correct="false">차이 없음, 근거 확실성 '중등도'</button>
+      <button class="quiz-opt" data-correct="false">유의하게 낮음 (RR 0.87), 근거 확실성 '낮음'</button>
+      <p class="quiz-explain">PPOS는 GnRH antagonist 대비 생아출생률이 유의하게 높았으나(RR 1.13, 95% CI 1.02–1.25), 근거 확실성은 '중등도(moderate)'로 평가되었습니다. (초록 RESULTS)</p>
+    </div>
+  </div>
+</div>
     <div style="font-size:12px;color:#666;margin-bottom:8px">
       Ultrasound in Obstetrics &amp; Gynecology · 2026-07-09 · <strong>체계적 문헌고찰 · 메타분석</strong> (RCT 20편, 4,430명)
     </div>
@@ -394,5 +452,24 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid #dfe3e8;
   내부용 자료입니다. 외부 공유를 금합니다.
 </footer>
 </div>
+<script>
+document.querySelectorAll('.quiz-q').forEach(function (q) {
+  var opts = q.querySelectorAll('.quiz-opt');
+  var explain = q.querySelector('.quiz-explain');
+  opts.forEach(function (opt) {
+    opt.addEventListener('click', function () {
+      if (q.dataset.answered) return;
+      q.dataset.answered = '1';
+      var right = opt.dataset.correct === 'true';
+      opt.classList.add(right ? 'correct' : 'wrong');
+      opts.forEach(function (o) {
+        o.disabled = true;
+        if (!right && o.dataset.correct === 'true') o.classList.add('correct');
+      });
+      if (explain) explain.classList.add('show');
+    });
+  });
+});
+</script>
 </body>
 </html>

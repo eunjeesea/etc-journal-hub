@@ -40,6 +40,26 @@ h2{font-size:17px;margin:32px 0 12px;padding-bottom:6px;border-bottom:1px solid 
   text-align:center;color:#8a939c;font-size:14px}
 footer{margin-top:40px;padding-top:16px;border-top:1px solid #dfe3e8;
   font-size:12px;color:#8a939c}
+
+/* Quiz. The digest ships the questions as plain markup; the script below makes them
+   interactive. In the email (no JS) the questions and explanations simply read as text. */
+.quiz{margin:16px 0 4px;padding:14px 16px;background:#f7f9fb;
+  border:1px solid #dde4ea;border-left:3px solid #0b5394;border-radius:6px}
+.quiz::before{content:"이해도 확인 퀴즈";display:block;font-size:11px;font-weight:700;
+  letter-spacing:.03em;color:#0b5394;margin-bottom:10px}
+.quiz-q{margin-bottom:14px}
+.quiz-q:last-child{margin-bottom:0}
+.quiz-question{margin:0 0 8px;font-weight:700;font-size:13.5px}
+.quiz-opt{display:block;width:100%;text-align:left;margin:0 0 6px;padding:8px 12px;
+  font:inherit;font-size:13px;color:#1c2024;background:#fff;border:1px solid #d8dee4;
+  border-radius:5px;cursor:pointer}
+.quiz-opt:hover:not(:disabled){border-color:#0b5394;background:#f2f7fc}
+.quiz-opt:disabled{cursor:default}
+.quiz-opt.correct{border-color:#1a7f4b;background:#e8f6ee;color:#12603a;font-weight:700}
+.quiz-opt.wrong{border-color:#c0392b;background:#fdeceb;color:#8c2a1f}
+.quiz-explain{display:none;margin:8px 0 0;padding:9px 12px;font-size:12.5px;
+  background:#fff;border:1px dashed #b8c4cf;border-radius:5px;color:#41505e}
+.quiz-explain.show{display:block}
 @media(max-width:600px){.wrap{padding:0 14px 44px}h1{font-size:20px}.digest{padding:4px 14px 16px}}
 </style>
 </head>
@@ -85,7 +105,26 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid #dfe3e8;
       <a href="https://pubmed.ncbi.nlm.nih.gov/42104696/" style="color:#003087;text-decoration:none;">
         Analysis of the Impact of Cognitive Behavioural Therapy Combined With Tadalafil on Urination and Sexual Function Recovery in Patients With Functional Erectile Dysfunction
       </a>
+    
+  <div class="quiz" data-pmid="42104696">
+    <div class="quiz-q">
+      <p class="quiz-question">Q1. 이 연구의 설계와 대상 환자 수는?</p>
+      <button class="quiz-opt" data-correct="true">후향적 코호트 연구 · 236명</button>
+      <button class="quiz-opt" data-correct="false">무작위배정 임상시험 · 236명</button>
+      <button class="quiz-opt" data-correct="false">전향적 코호트 연구 · 121명</button>
+      <button class="quiz-opt" data-correct="false">메타분석 · RCT 12편</button>
+      <p class="quiz-explain">총 236명을 대상으로 한 후향적 코호트 연구입니다 (tadalafil군 121명, 병합군 115명). RCT가 아니라는 점이 근거 강도 해석에 중요합니다. (초록 METHODS)</p>
     </div>
+    <div class="quiz-q">
+      <p class="quiz-question">Q2. 두 군의 치료 내용 차이는 무엇인가?</p>
+      <button class="quiz-opt" data-correct="false">tadalafil 용량이 5mg vs 10mg으로 달랐다</button>
+      <button class="quiz-opt" data-correct="true">병합군은 tadalafil에 더해 인지행동치료(CBT)를 12주간 받았다</button>
+      <button class="quiz-opt" data-correct="false">병합군은 tadalafil 대신 알파차단제를 받았다</button>
+      <button class="quiz-opt" data-correct="false">투여 기간이 12주 vs 24주로 달랐다</button>
+      <p class="quiz-explain">두 군 모두 tadalafil 5mg을 12주간 매일 복용했고, 병합군만 추가로 12주간 인지행동치료를 받았습니다. 즉 이 연구는 tadalafil 자체의 효과가 아니라 CBT 추가 효과를 본 것입니다. (초록 METHODS)</p>
+    </div>
+  </div>
+</div>
     <div style="font-size:12px;color:#666;margin-bottom:10px;">
       Arch Esp Urol · 2026년 4월 · <b>후향적 코호트</b> · PMID 42104696
     </div>
@@ -329,5 +368,24 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid #dfe3e8;
   내부용 자료입니다. 외부 공유를 금합니다.
 </footer>
 </div>
+<script>
+document.querySelectorAll('.quiz-q').forEach(function (q) {
+  var opts = q.querySelectorAll('.quiz-opt');
+  var explain = q.querySelector('.quiz-explain');
+  opts.forEach(function (opt) {
+    opt.addEventListener('click', function () {
+      if (q.dataset.answered) return;
+      q.dataset.answered = '1';
+      var right = opt.dataset.correct === 'true';
+      opt.classList.add(right ? 'correct' : 'wrong');
+      opts.forEach(function (o) {
+        o.disabled = true;
+        if (!right && o.dataset.correct === 'true') o.classList.add('correct');
+      });
+      if (explain) explain.classList.add('show');
+    });
+  });
+});
+</script>
 </body>
 </html>
